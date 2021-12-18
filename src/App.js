@@ -1,24 +1,27 @@
-import logo from './logo.svg';
-import './App.css';
+import styled, { ThemeProvider } from "styled-components";
+import Navbar from "./Components/Navbar/Navbar";
+import { theme } from "./tokens";
+import ModalProvider from "./Components/Context/ModalProvider";
+import ButtonContainer from "./Components/ButtonContainer/ButtonContainer";
 
 function App() {
+  const Container = styled.div`
+    height: 90vh;
+    background: ${({ theme }) => theme.colors.greyLight};
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  `;
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <ThemeProvider theme={theme}>
+      <ModalProvider>
+        <Navbar />
+        <Container>
+          <ButtonContainer />
+        </Container>
+      </ModalProvider>
+    </ThemeProvider>
   );
 }
 
